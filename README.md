@@ -2,9 +2,9 @@
 
 Code, lexicons, de-identified author-level features and results for:
 
-> J. W. Ayana and H. Ning, "Operationalizing the Cyber-Physical-Social-Thinking
-> Quadspace: Separability and Convergent Validity of Four-Space Measures Derived
-> from Social Platform Data," manuscript under review, 2026.
+> J. W. Ayana and H. Ning, "Empirical measurement and separability testing of
+the cyber-physical-social-thinking (CPST) spaces
+using large-scale social platform behavioural data," manuscript under review, 2026.
 
 The study asks whether the four CPST spaces (cyber, physical, social and
 thinking) can be measured separately from platform behaviour. It builds
