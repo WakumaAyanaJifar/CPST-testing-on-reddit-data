@@ -1,0 +1,9 @@
+# Analysis
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+scikit-learn>=1.0     # StratifiedGroupKFold is required
+matplotlib>=3.7
+
+# Collection only (scripts/fomo_collector_v6.py, scripts/recover_and_expand.py)
+praw>=7.7

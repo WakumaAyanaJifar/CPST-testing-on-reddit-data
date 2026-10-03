@@ -1,0 +1,443 @@
+{
+  "version": 2,
+  "sample": "all",
+  "n_authors": 2595,
+  "drop_counts": true,
+  "drop_partial": true,
+  "dropped_features": {
+    "S_comment_share": "= 1 - C_post_share",
+    "C_offblock_share": "= 1 - C_anxiety_share - C_diseng_share",
+    "T_affect_balance": "function of T_affect_pos and T_affect_neg",
+    "T_temporal_balance": "function of T_past and T_future",
+    "T_self_other_ratio": "function of T_self_sg and T_other_ref",
+    "S_max_depth": "near-duplicate of S_mean_depth on the same subset",
+    "P_utc_offset_est": "location parameter, not a physical-state measure"
+  },
+  "residualised_on": [
+    "log record count",
+    "log tenure"
+  ],
+  "collinearity_flags": [],
+  "separability": {
+    "within_med": 0.08147205512877204,
+    "between_med": 0.0471646368548422,
+    "effect": 0.2797672300099254,
+    "p": 1.1106980891720055e-18,
+    "per_block": {
+      "C": {
+        "within": 0.11282305062112018,
+        "other": 0.06368798141731044
+      },
+      "P": {
+        "within": 0.06039237589152047,
+        "other": 0.03365578958401216
+      },
+      "S": {
+        "within": 0.16909123328360387,
+        "other": 0.05560424206656149
+      },
+      "T": {
+        "within": 0.07928948085899651,
+        "other": 0.044832232821253315
+      }
+    }
+  },
+  "cca": [
+    {
+      "a": "C",
+      "b": "P",
+      "n": 2595,
+      "ka": 7,
+      "kb": 6,
+      "rho1": 0.4949087154893823,
+      "null_mean": 0.08436907085731447,
+      "null_p95": 0.10346378449864325,
+      "p": 0.000999000999000999,
+      "loadings_a": [
+        [
+          "C_median_score",
+          0.6294245942247046
+        ],
+        [
+          "C_community_churn",
+          -0.6088389521045569
+        ],
+        [
+          "C_diseng_share",
+          0.33204593147816236
+        ],
+        [
+          "C_community_entropy",
+          0.3239882336386776
+        ],
+        [
+          "C_top_community_share",
+          -0.2923476316137361
+        ]
+      ],
+      "loadings_b": [
+        [
+          "P_median_gap_s",
+          0.8188126850798825
+        ],
+        [
+          "P_activity_density",
+          0.7690649143441493
+        ],
+        [
+          "P_items_per_session",
+          -0.7633152157846422
+        ],
+        [
+          "P_burst_share",
+          -0.7500292648972192
+        ],
+        [
+          "P_items_per_active_day",
+          -0.6429076029051375
+        ]
+      ],
+      "p_holm": 0.005994005994005994
+    },
+    {
+      "a": "C",
+      "b": "S",
+      "n": 2595,
+      "ka": 7,
+      "kb": 3,
+      "rho1": 0.417340198853068,
+      "null_mean": 0.06854261405134261,
+      "null_p95": 0.09020104981920503,
+      "p": 0.000999000999000999,
+      "loadings_a": [
+        [
+          "C_social_link_share",
+          0.6408962430310503
+        ],
+        [
+          "C_anxiety_share",
+          -0.4958662636532353
+        ],
+        [
+          "C_top_community_share",
+          -0.46566785284843465
+        ],
+        [
+          "C_community_entropy",
+          0.4606273301006586
+        ],
+        [
+          "C_selfpost_share",
+          -0.39234395431680635
+        ]
+      ],
+      "loadings_b": [
+        [
+          "S_reply_ratio",
+          -0.961985950885363
+        ],
+        [
+          "S_items_per_thread",
+          -0.41083735800492166
+        ],
+        [
+          "S_partners_per_item",
+          -0.40035844271563503
+        ],
+        [
+          "S_reply_to_comment_share",
+          -0.16768984289179775
+        ],
+        [
+          "S_reciprocity",
+          -0.11290067866832464
+        ]
+      ],
+      "p_holm": 0.005994005994005994
+    },
+    {
+      "a": "C",
+      "b": "T",
+      "n": 2595,
+      "ka": 7,
+      "kb": 13,
+      "rho1": 0.7117718466665794,
+      "null_mean": 0.10848303354997925,
+      "null_p95": 0.1273807160840793,
+      "p": 0.000999000999000999,
+      "loadings_a": [
+        [
+          "C_anxiety_share",
+          -0.8203870207034014
+        ],
+        [
+          "C_diseng_share",
+          0.6327408774211766
+        ],
+        [
+          "C_neg_score_share",
+          0.33028410796079577
+        ],
+        [
+          "C_edited_share",
+          0.2327562863597026
+        ],
+        [
+          "C_communities_per_month",
+          0.21752366855601904
+        ]
+      ],
+      "loadings_b": [
+        [
+          "T_affect_neg",
+          -0.8194383604999281
+        ],
+        [
+          "T_self_sg",
+          -0.633966531818483
+        ],
+        [
+          "T_somatic_lex",
+          -0.633211129877877
+        ],
+        [
+          "T_sleep_lex",
+          -0.47505893306103436
+        ],
+        [
+          "T_past",
+          -0.42830842782412754
+        ]
+      ],
+      "p_holm": 0.005994005994005994
+    },
+    {
+      "a": "P",
+      "b": "S",
+      "n": 2595,
+      "ka": 6,
+      "kb": 3,
+      "rho1": 0.41864379959548037,
+      "null_mean": 0.06539975868910326,
+      "null_p95": 0.08643608511477528,
+      "p": 0.000999000999000999,
+      "loadings_a": [
+        [
+          "P_median_gap_s",
+          -0.8080848246855383
+        ],
+        [
+          "P_activity_density",
+          -0.780217666312655
+        ],
+        [
+          "P_items_per_session",
+          0.7328051267685799
+        ],
+        [
+          "P_burst_share",
+          0.7206618607085383
+        ],
+        [
+          "P_items_per_active_day",
+          0.6386276996707168
+        ]
+      ],
+      "loadings_b": [
+        [
+          "S_reply_to_comment_share",
+          0.941222389397123
+        ],
+        [
+          "S_items_per_thread",
+          0.9150801552188752
+        ],
+        [
+          "S_reciprocity",
+          0.18374119386098933
+        ],
+        [
+          "S_reply_ratio",
+          0.1200682653264706
+        ],
+        [
+          "S_partners_per_item",
+          -0.04793696946880104
+        ]
+      ],
+      "p_holm": 0.005994005994005994
+    },
+    {
+      "a": "P",
+      "b": "T",
+      "n": 2595,
+      "ka": 6,
+      "kb": 13,
+      "rho1": 0.2742394571168945,
+      "null_mean": 0.10411830967206806,
+      "null_p95": 0.12307874812204166,
+      "p": 0.000999000999000999,
+      "loadings_a": [
+        [
+          "P_median_gap_s",
+          -0.7759414740236329
+        ],
+        [
+          "P_items_per_session",
+          0.7619946260099408
+        ],
+        [
+          "P_burst_share",
+          0.7606879598342213
+        ],
+        [
+          "P_activity_density",
+          -0.741444526973227
+        ],
+        [
+          "P_items_per_active_day",
+          0.6182665876014637
+        ]
+      ],
+      "loadings_b": [
+        [
+          "T_len_variability",
+          0.5284767402110716
+        ],
+        [
+          "T_affect_neg",
+          0.41344332614865287
+        ],
+        [
+          "T_comparative",
+          -0.32900616796344545
+        ],
+        [
+          "T_absolutist",
+          0.30654488123048523
+        ],
+        [
+          "T_second_person",
+          0.29674022700314473
+        ]
+      ],
+      "p_holm": 0.005994005994005994
+    },
+    {
+      "a": "S",
+      "b": "T",
+      "n": 2595,
+      "ka": 3,
+      "kb": 13,
+      "rho1": 0.3805637465335894,
+      "null_mean": 0.0883403642493962,
+      "null_p95": 0.1085016430753096,
+      "p": 0.000999000999000999,
+      "loadings_a": [
+        [
+          "S_reply_ratio",
+          0.9442062992007136
+        ],
+        [
+          "S_items_per_thread",
+          0.5009333515236497
+        ],
+        [
+          "S_partners_per_item",
+          0.41576127164127874
+        ],
+        [
+          "S_reply_to_comment_share",
+          0.270364850826141
+        ],
+        [
+          "S_reciprocity",
+          0.1823969753075657
+        ]
+      ],
+      "loadings_b": [
+        [
+          "T_compulsion_lex",
+          0.566417823651521
+        ],
+        [
+          "T_somatic_lex",
+          0.5385076144664765
+        ],
+        [
+          "T_sleep_lex",
+          0.5166621709336852
+        ],
+        [
+          "T_type_token_ratio",
+          -0.4433629703780376
+        ],
+        [
+          "T_self_sg",
+          0.4121176746828833
+        ]
+      ],
+      "p_holm": 0.005994005994005994
+    }
+  ],
+  "offset_distribution": {
+    "counts": [
+      0,
+      46,
+      58,
+      73,
+      134,
+      221,
+      253,
+      284,
+      285,
+      202,
+      128,
+      108,
+      103,
+      208,
+      72,
+      61,
+      61,
+      41,
+      32,
+      29,
+      40,
+      32,
+      30,
+      32,
+      42
+    ],
+    "hours": [
+      -12,
+      -11,
+      -10,
+      -9,
+      -8,
+      -7,
+      -6,
+      -5,
+      -4,
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "chi2": 1781.3592233009708,
+    "p": 0.0,
+    "band_share": 0.7759223300970873
+  },
+  "record_level": []
+}

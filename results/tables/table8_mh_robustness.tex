@@ -1,0 +1,21 @@
+\begin{table}[!t]
+\caption{Cluster-robust intervals for the record-level convergence test.
+Robins-Breslow-Greenland intervals assume records are independent within
+author; the bootstrap resamples authors with replacement and therefore does
+not.}
+\label{tab:mhrobust}
+\centering
+\footnotesize
+\begin{tabular}{@{}llr@{\hspace{4pt}}l@{\hspace{4pt}}l@{}}
+\toprule
+Probe & Role & OR & RBG 95\% CI & Bootstrap 95\% CI \\
+\midrule
+Sleep & test & 1.310 & [1.232, 1.393] & [1.210, 1.419] \\
+Sleep_noclock & test & 1.295 & [1.217, 1.378] & [1.193, 1.403] \\
+Somatic & test & 1.044 & [0.964, 1.129] & [0.954, 1.141] \\
+Compulsion & test & 1.096 & [0.917, 1.311] & [0.885, 1.330] \\
+Question & control & 0.962 & [0.938, 0.986] & [0.930, 0.992] \\
+Second & control & 0.990 & [0.969, 1.011] & [0.963, 1.018] \\
+\bottomrule
+\end{tabular}
+\end{table}

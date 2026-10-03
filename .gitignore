@@ -1,0 +1,28 @@
+# Private data: never commit
+*.db
+*.sqlite
+*.key
+author_salt*
+*_private*
+gold_*.xlsx
+
+# Private feature files: only the de-identified copies in data/ belong here.
+# Commit them deliberately with:  git add -f data/cpst_features*.csv
+*.csv
+!results/*.csv
+
+# Generated outputs from local reruns
+data/paper1/
+paper1/
+
+# Python and editors
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
