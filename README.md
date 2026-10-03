@@ -2,7 +2,7 @@
 
 Code, lexicons, de-identified author-level features and results for:
 
-> J. W. Ayana and H. Ning, "Empirical measurement and separability testing of
+> "Empirical measurement and separability testing of
 the cyber-physical-social-thinking (CPST) spaces
 using large-scale social platform behavioural data," manuscript under review, 2026.
 
