@@ -91,8 +91,4 @@ figures are released under Creative Commons Attribution 4.0 (`LICENSE-DATA`).
 Use of the data must also comply with Reddit's terms for the content from which
 the features were derived.
 
-## Contact
 
-Jifar Wakuma Ayana, School of Computer and Communication Engineering,
-University of Science and Technology Beijing.
-Email:d202561032@xs.ustb.edu.cn
