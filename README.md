@@ -2,9 +2,9 @@
 
 Code, lexicons, de-identified author-level features and results for:
 
-> "Empirical measurement and separability testing of
-the cyber-physical-social-thinking (CPST) spaces
-using large-scale social platform behavioural data," manuscript under review, 2026.
+> "A method for testing the measurability of the
+cyber-physical-social-thinking spaces: Partial and asymmetric support
+from social platform behaviour," manuscript submitted, 2026.
 
 The study asks whether the four CPST spaces (cyber, physical, social and
 thinking) can be measured separately from platform behaviour. It builds
