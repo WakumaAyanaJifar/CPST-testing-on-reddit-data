@@ -79,10 +79,6 @@ To collect a comparable corpus yourself, set `REDDIT_CLIENT_ID` and
 `REDDIT_CLIENT_SECRET` as environment variables and run the collection scripts.
 Credentials are never stored in the code.
 
-## Citation
-
-If you use this code or data, please cite the paper above. Citation metadata is
-in `CITATION.cff`.
 
 ## Licence
 
