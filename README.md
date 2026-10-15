@@ -2,15 +2,21 @@
 
 Code, lexicons, de-identified author-level features and results for:
 
-> J. W. Ayana and H. Ning, "Operationalizing the Cyber-Physical-Social-Thinking
-> Quadspace: Separability and Convergent Validity of Four-Space Measures Derived
-> from Social Platform Data," manuscript under review, 2026.
+> "Are the cyber-physical-social-thinking spaces separately measurable? A
+> validation protocol and evidence from Reddit behavioural traces," manuscript
+> submitted, 2026.
 
 The study asks whether the four CPST spaces (cyber, physical, social and
 thinking) can be measured separately from platform behaviour. It builds
 author-level features for 2,595 Reddit authors across eight communities
 (2023–2025) and tests reliability, separability, coupling, known-groups
 validity, and the circadian inference on which the physical space depends.
+On these data, method variance dominates the CPST spaces: the CPST allocation is
+indistinguishable from a partition by data source, and a multitrait-multimethod
+test with text as a second method fails for all three spaces it covers. The
+physical block contains two nearly unrelated components, daily timing and
+posting tempo, and individual circadian offsets are validated against simpler
+offset assignments.
 
 ## Repository contents
 
@@ -34,6 +40,13 @@ validity, and the circadian inference on which the physical space depends.
 | `analyze_validity.py` | Reliability, partition test, known groups, redundancy | No |
 | `mh_robustness.py` | Cluster bootstrap, anchor sweep, placebo sweep | Yes |
 | `make_figures.py` | Figs. 1–3 and Table I | Figs. 2–3 and Table I only |
+| `revision_analyses.py` | Physical sub-groups, mapping sensitivity, half-sampling intervals, role-matched known groups, circadian subsample profile, automated-account screen | Only the subsample profile and account screen (`--skip-db` runs the rest) |
+| `revision_b1_check.py` | Physical sub-groups with definitionally linked feature pairs excluded | No |
+| `revision_b7_loadings.py` | Half-sample stability of canonical structure coefficients | No |
+| `revision2_channel.py` | CPST vs data-channel partition, channel-restricted null, cross-channel features, shared-component exclusion, conservative redundancy, k = 4 benchmark, lexicon count | Only the lexicon count (`--skip-db` runs the rest) |
+| `revision3_checks.py` | Paired CPST-minus-channel interval, multitrait-multimethod matrix with text as second method, rhythm/tempo construction checks, week-block reliability, circadian offset baselines | Yes (reads record text and timestamps) |
+| `r4_power.py` | Power of rule R4 by simulation | No (synthetic data only) |
+| `revision4_final.py` | Paired bootstrap of offset comparisons, social construction null, held-out replication by community block, MTMM positive control | Yes (reads record text and thread structure) |
 
 ## Reproducing the results from the public data
 
@@ -47,19 +60,41 @@ python scripts/analyze_validity.py
 python scripts/analyze_spaces_v2.py --skip-records
 python scripts/analyze_spaces_v2.py --drop-counts --tag _nocounts --skip-records
 python scripts/analyze_spaces_v2.py --drop-counts --drop-partial --tag _core --skip-records
+
+# robustness analyses added in revision
+python scripts/revision_analyses.py --skip-db
+python scripts/revision_b1_check.py
+python scripts/revision_b7_loadings.py
+python scripts/revision2_channel.py --skip-db
+python scripts/r4_power.py
 ```
 
-Outputs are written to `data/paper1/`. They reproduce reliability (Table II),
-separability (Table III), canonical coupling (Table IV), known-groups validity
-(Table V), redundancy, the partition test and the offset distribution.
+Week-block split halves (reliability sensitivity check) are built from the
+private database with:
+
+```
+python scripts/extract_cpst_features.py --half 1 --split week
+python scripts/extract_cpst_features.py --half 2 --split week
+```
+
+Outputs are written to `data/paper1/`. They reproduce reliability,
+separability, the physical sub-group analysis, canonical coupling and its
+stability, known-groups validity (including the role-matched contrast),
+redundancy, the partition test, the mapping-sensitivity checks and the offset
+distribution. `revision_analyses.py` prints a self-check: its "as published"
+row must read margin +0.0314 and corrected gaps C +0.057, P +0.019, S +0.180,
+T +0.040.
 Permutation and cross-validation steps are seeded and the public files keep
 the private row order, so results match those in `results/`. Small
 differences can arise only from different library versions.
 
-The record-level circadian validation (Tables VI–VII, Figs. 9–12) reads the
-text of individual records and cannot be rerun from the public files. Its
-complete outputs are in `results/mh_robustness.json`,
-`results/mh_placebo.json` and `results/results_v2.json`.
+The record-level circadian validation, the profile of its 1,290-author
+subsample and the automated-account screen read individual records and cannot be
+rerun from the public files. Their complete outputs are in
+`results/mh_robustness.json`, `results/mh_placebo.json`,
+`results/results_v2.json`, `results/revision_analyses.json`,
+`results/revision2_channel.json`, `results/revision3_checks.json` and
+`results/revision4_final.json`.
 
 ## What is not released, and why
 
@@ -79,10 +114,6 @@ To collect a comparable corpus yourself, set `REDDIT_CLIENT_ID` and
 `REDDIT_CLIENT_SECRET` as environment variables and run the collection scripts.
 Credentials are never stored in the code.
 
-## Citation
-
-If you use this code or data, please cite the paper above. Citation metadata is
-in `CITATION.cff`.
 
 ## Licence
 
@@ -91,7 +122,3 @@ figures are released under Creative Commons Attribution 4.0 (`LICENSE-DATA`).
 Use of the data must also comply with Reddit's terms for the content from which
 the features were derived.
 
-## Contact
-
-Jifar Wakuma Ayana, School of Computer and Communication Engineering,
-University of Science and Technology Beijing.

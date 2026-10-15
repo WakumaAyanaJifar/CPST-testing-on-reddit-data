@@ -47,6 +47,22 @@ rather than a measure (paper, Section V-E).
 
 ## Physical space (P_)
 
+The paper groups physical features into four descriptive sub-groups: rhythm
+(rhythm strength, hour entropy, night, late-night, working-hours and weekend
+shares, trough depth), tempo (median gap, burst share, sessions, records per
+session), density (active days, activity density, records per active day) and
+reply timing (reply latency, fast-reply share). Five pairs are arithmetic
+functions of each other once record count and tenure are removed and are
+excluded when testing the groups: the three pairs among active days, activity
+density and records per active day; sessions and records per session; and
+night share and the nested late-night share. The main separability test also
+excludes 12 further pairs that share an arithmetic component (17 in total; see
+`LINKED_PAIRS` in `scripts/revision2_channel.py`).
+
+Rhythm strength, hour entropy and trough depth do not depend on the estimated
+offset (rotating the clock leaves them unchanged); night, late-night and
+working-hours shares do. Weekend share is computed from UTC calendar days.
+
 Local time is inferred per author from the six-hour activity trough, anchored
 at 04:00 local (paper, Section V-B).
 

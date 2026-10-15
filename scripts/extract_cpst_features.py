@@ -141,9 +141,9 @@ def estimate_utc_offset(hours_utc: np.ndarray) -> Tuple[int, float]:
     """Estimate an author's UTC offset from their own activity trough.
 
     Assumption: the 6-hour window with least posting is the sleep window, and it
-    is centred at 04:00 local. Della Negra et al. (arXiv 2605.04371) report that
-    the activity minimum falls consistently close to 04:00 local across
-    virtually all time zones on this platform.
+    is centred at 04:00 local. Della Negra et al. (arXiv 2605.04371, preprint)
+    infer the time zones of Reddit COMMUNITIES with this anchor; applying it to
+    individual authors is an extrapolation, tested in the paper.
 
     The anchor must be an INTEGER. With a half-integer anchor such as 03:30,
     (anchor - trough_centre) always ends in .5 because trough_centre is an
@@ -185,7 +185,7 @@ def circular_resultant(hours_local: np.ndarray) -> float:
 # pass 1: metadata -> C, P, S
 # ======================================================================
 
-def apply_half(df: pd.DataFrame, half: int) -> pd.DataFrame:
+def apply_half(df: pd.DataFrame, half: int, split: str = "alternate") -> pd.DataFrame:
     """Keep alternating records per author, for split-half reliability.
 
     Records are ordered by time within author and assigned alternately, so each
@@ -194,7 +194,12 @@ def apply_half(df: pd.DataFrame, half: int) -> pd.DataFrame:
     time; an alternating split does not.
     """
     df = df.sort_values(["author_hash", "created_utc"]).copy()
-    df["_rank"] = df.groupby("author_hash").cumcount()
+    if split == "week":
+        # block split: alternating calendar weeks, so records from one session
+        # or thread cannot fall into both halves (short-range autocorrelation)
+        df["_rank"] = (df["created_utc"] // (7 * 86400)).astype(int)
+    else:
+        df["_rank"] = df.groupby("author_hash").cumcount()
     keep = df["_rank"] % 2 == (0 if half == 1 else 1)
     out = df[keep].drop(columns=["_rank"])
     print(f"  half {half}: {len(out):,} of {len(df):,} records retained")
@@ -524,6 +529,9 @@ def main():
     ap.add_argument("--half", type=int, choices=[1, 2], default=None,
                     help="split-half reliability: keep alternating records per "
                          "author. Run once with 1 and once with 2.")
+    ap.add_argument("--split", choices=["alternate", "week"], default="alternate",
+                    help="how --half divides records: alternating records "
+                         "(default) or alternating calendar weeks")
     ap.add_argument("--out", default="cpst_features.csv")
     args = _args(ap)
 
@@ -540,7 +548,7 @@ def main():
     keep_ids = None
     if args.half:
         print(f"split-half mode, half {args.half}")
-        meta = apply_half(meta, args.half)
+        meta = apply_half(meta, args.half, args.split)
         keep_ids = set(meta.id)
         vc = meta.author_hash.value_counts()
         # the volume floor applies to the half, not the whole
@@ -566,7 +574,8 @@ def main():
 
     out_name = args.out
     if args.half and out_name == "cpst_features.csv":
-        out_name = f"cpst_features_h{args.half}.csv"
+        tag = "_wk" if args.split == "week" else ""
+        out_name = f"cpst_features{tag}_h{args.half}.csv"
     path = os.path.join(BASE_DIR, out_name)
     out.to_csv(path, index=False)
 
